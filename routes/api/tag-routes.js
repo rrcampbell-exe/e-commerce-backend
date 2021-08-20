@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
   // find all tags
   Tag.findAll({
     // be sure to include its associated Product data
-    include: [Product, ProductTag],
+    include: { model: Product, as: "product_tags", ProductTag },
   }).then((tag) => {
     res.json(tag);
   });
@@ -20,7 +20,7 @@ router.get("/:id", (req, res) => {
       id: req.params.id,
     },
     // be sure to include its associated Product data
-    include: [Product, ProductTag],
+    include: { model: Product, as: "product_tags", ProductTag },
   }).then((tag) => {
     res.json(tag);
   });
